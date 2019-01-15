@@ -1,15 +1,16 @@
+# load packages ----
 library(shiny)
-library(nessy)
+library(nessy) # remotes::install_github("ColinFay/nessy")
 
 # load functions ----
 source("utils.R")
 
 # define global vars ----
-
 robot_masters <- c("Metal Man", "Quick Man", "Bubble Man", "Air Man", "Wood Man", "Crash Man", "Flash Man", "Heat Man")
 robot_values <- c("metalman", "quickman", "bubbleman", "airman", "woodman", "crashman", "flashman", "heatman")
 template_file <- "templates/megaman.pptx"
 
+# user interface ----
 ui <- cartridge(
   title = "Megaman Slide Generator!",
   subtitle = "Complete the simple form below",
@@ -39,7 +40,7 @@ ui <- cartridge(
   )
 )
 
-
+# server processing ----
 server <- function(input, output, session) {
   
   output$download_slide <- downloadHandler(

@@ -1,0 +1,30 @@
+---
+title: "The officer package"
+subtitle: "Making PowerPoint slides from R"
+author: "<br>Eric Nantz <br> <a href='https://twitter.com/thercast'> <i class='fab  fa-twitter '></i>@thercast</a> <br> <a href='https://github.com/rpodcast'> <i class='fab  fa-github '></i> rpodcast</a> <br> <i class='fas  fa-microphone '></i>  <a href='https://r-podcast.org'>r-podcast.org</a><br>"
+date: "<br>Advanced R Markdown Workshop<br>`rstudio::conf(2019L)`"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    chakra: libs/remark-latest.min.js
+    css: ["ninjutsu", "shinobi", "assets/print.css"]
+    seal: true
+    self_contained: false
+    nature:
+      ratio: "16:9"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+--- 
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+library(knitr)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+# options(knitr.table.format = "html")
+library(tidyverse)
+library(officer)
+library(rvg)
+library(flextable)
+library(icon)
+```

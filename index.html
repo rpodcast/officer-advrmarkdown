@@ -6,6 +6,8 @@
     <meta name="author" content=" Eric Nantz    @thercast     rpodcast    r-podcast.org" />
     <link href="libs/remark-css/ninjutsu.css" rel="stylesheet" />
     <link href="libs/remark-css/shinobi.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/fontawesome-all.min.css" rel="stylesheet" />
+    <link href="libs/ionicons/css/ionicons.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="assets/print.css" type="text/css" />
   </head>
   <body>
@@ -19,8 +21,530 @@ class: center, middle, inverse, title-slide
 
 ---
 
+
+
+
+---
+class: bg-main1
+
+# A Few Disclaimers
+&lt;br&gt;
+&lt;br&gt;
+--
+
+## I am not the author of this excellent package
+
+&lt;br&gt;
+Just a very happy user
+&lt;br&gt;
+
+--
+&lt;br&gt;
+
+## I am not a fan of PowerPoint!
+
+&lt;img src="img/looneytunes.gif" width=30%&gt;
+
+---
+class: bg-main1
+
+# However...
+
+&lt;blockquote class="twitter-tweet" data-lang="en"&gt;&lt;p lang="en" dir="ltr"&gt;If you&amp;#39;re doing &lt;a href="https://twitter.com/hashtag/rstats?src=hash&amp;amp;ref_src=twsrc%5Etfw"&gt;#rstats&lt;/a&gt; R Markdown involving knitting to MS Word/PowerPoint and you are not using &lt;a href="https://twitter.com/DavidGohel?ref_src=twsrc%5Etfw"&gt;@DavidGohel&lt;/a&gt;&amp;#39;s packages, then you are doing it wrong. The amount of functionality in `flextable` alone is mind blowing. Have you looked that, &lt;a href="https://twitter.com/revodavid?ref_src=twsrc%5Etfw"&gt;@revodavid&lt;/a&gt;?&lt;/p&gt;&amp;mdash; JD Long (@CMastication) &lt;a href="https://twitter.com/CMastication/status/1042074521401020417?ref_src=twsrc%5Etfw"&gt;September 18, 2018&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+
+
+&lt;blockquote class="twitter-tweet" data-lang="en"&gt;&lt;p lang="en" dir="ltr"&gt;I&amp;#39;ve been using officer a lot this year for some projects involving &lt;a href="https://twitter.com/hashtag/shiny?src=hash&amp;amp;ref_src=twsrc%5Etfw"&gt;#shiny&lt;/a&gt; &amp;amp; powerpoint slides automation and I&amp;#39;ll be attending your &lt;a href="https://twitter.com/hashtag/rstudioconf?src=hash&amp;amp;ref_src=twsrc%5Etfw"&gt;#rstudioconf&lt;/a&gt; workshop!  &lt;a href="https://twitter.com/xieyihui?ref_src=twsrc%5Etfw"&gt;@xieyihui&lt;/a&gt; I&amp;#39;m happy to pitch in if you are still looking 👍&lt;/p&gt;&amp;mdash; The R-Podcast (Eric) (@theRcast) &lt;a href="https://twitter.com/theRcast/status/1073441479257980928?ref_src=twsrc%5Etfw"&gt;December 14, 2018&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+
+
+---
+class: split-two white
+
+.column.bg-main1[
+.content[
+&lt;img src="https://www.ardata.fr/img/hexbin/officer.svg" width=85%&gt;
+&lt;br&gt;
+.center[
+[davidgohel.github.io/officer/](https://davidgohel.github.io/officer/)
+
+### Authored by David Gohel
+]
+]
+]
+
+.column.bg-main2[
+.content[
+## Create Microsoft Word and PowerPoint files directly from <i class="fab  fa-r-project "></i>
+&lt;br&gt;
+&lt;br&gt;
+
+## No dependencies on other programs/libraries
+
+### Utilizes [Open XML format](https://support.office.com/en-us/article/open-xml-formats-and-file-name-extensions-5200d93c-3449-4380-8e11-31ef14555b18) introduced in MS Office 2007
+
+&lt;br&gt;
+&lt;br&gt;
+
+## ❌ Not part of the <i class="fab  fa-r-project "></i> Markdown ecosystem
+
+* Functional interface that is pipe-friendly
+
+]
+]
+
+---
+class: split-60 with-border
+
+.column.bg-main1[
+.center[
+# Motivating Example
+]
+
+&lt;img src="img/slide_example.png" width=95%&gt;
+]
+
+.column.bg-main3[
+.center[
+# It's Survey Time!
+]
+
+## Elicit feedback on [Megaman 2](https://megaman.fandom.com/wiki/Mega_Man_2)
+&lt;br&gt;
+&lt;br&gt;
+
+### Which robot master was the most difficult?
+
+### Which robot master was the easiest?
+
+### How many attempts before defeating each robot master?
+
+&lt;br&gt;
+
+## Challenge: Executives want a __very specific__ slide template used!
+]
+
+---
+layout: true
+class: split-10 with-thick-border border-gray
+
+.row.center[
+.content.vmiddle[
+# A workflow with `officer`
+]
+]
+
+.row[.content[
+.split-three[
+.column.bg-main1[.content[
+.center[
+# Configure Template
+]
+.center[
+### Master Layout
+]
+.img-fill.nopadding[![](img/layout_master_screenshot.png)]
+]
+]
+
+.column.bg-main1[.content[
+.center[
+# Import to <i class="fab  fa-r-project "></i>
+]
+
+```r
+library(officer)
+read_pptx("megaman.pptx") %&gt;%
+  layout_summary()
+```
+.font2[
+Parse slides metadata
+]
+
+```r
+annotate_base(
+  "megaman.pptx", 
+  "megaman_annotated.pptx"
+)
+```
+.font2[
+Create annotated slide deck
+]
+]
+]
+
+.column.bg-main1[.content[
+.center[
+# Create Slides!
+]
+
+```r
+my_pres %&gt;%
+  
+  add_slide("title_slide", "Office Theme") %&gt;%
+  ph_with_text("ctrTitle", "Megaman 2 Survey") %&gt;%
+  
+  add_slide("robot_master_slide", "Office Theme") %&gt;%
+  ph_with_text("title", "Easiest Robot Master") %&gt;%
+  ph_with_img("pic", "metalman.jpg") %&gt;%
+  ph_with_text("body", index = 3, str = "Metal Man") 
+
+print(my_pres, "output.pptx")
+```
+
+]
+]
+]]]
+
+---
+
+class: gray-row2-col2 gray-row2-col3
+
+---
+
+class: gray-row2-col1 gray-row2-col3
+count: false
+
+---
+
+class: gray-row2-col1 gray-row2-col2
+count: false
+
+---
+
+count: false
+
+---
+layout: false
+class: split-10
+
+.row.bg-main1.white[.content.vmiddle[
+# Importing Slides
+]]
+
+.row[
+.split-40[
+.column.bg-main1[.content[
+
+```r
+*library(tidyverse)
+library(officer)
+
+*my_pres &lt;- read_pptx("megaman.pptx)
+```
+]]
+
+.column.bg-main1[.content[
+## Initialize foundation
+
+### File argument optional (`officer` ships with minimal template)
+
+### `read_pptx` creates an R object representing a PowerPoint file
+&lt;br&gt;
+
+### All functions for manipulating slide content take this object as __first__ parameter
+&lt;br&gt;
+
+.center[
+&lt;img src="img/magrittr.png" width=30%&gt;
+&lt;br&gt;
+Pipe-friendly!
+]
+
+]]]]]
+
+---
+class: split-10
+
+.row.bg-main1.white[.content.vmiddle[
+# Under the (layout) hood
+]]
+
+.row[
+.split-40[
+.column.bg-main3[.content[
+
+```r
+library(tidyverse)
+library(officer)
+
+my_pres &lt;- read_pptx("megaman.pptx")
+
+layout_summary(my_pres)
+```
+
+
+```
+## # A tibble: 5 x 2
+##   layout             master      
+##   &lt;chr&gt;              &lt;chr&gt;       
+## 1 title_slide        Office Theme
+## 2 robot_master_slide Office Theme
+## 3 graph_slide        Office Theme
+## 4 end_slide          Office Theme
+## 5 Title and Content  Office Theme
+```
+
+]]
+
+.column.bg-main4[.content[
+
+## Each slide layout is a template under a __Master Layout__
+
+### Defines placeholder formatting attributes, positions, and other static elements
+
+### All new slides must originate from one of these layouts
+
+&lt;br&gt;
+
+## How to change placeholders in a layout?
+
+### Only through PowerPoint directly <i class="ion  ion-sad "></i>
+
+
+]]]]]
+
+
+---
+class: shuriken-reverse-100
+
+.blade1.bg-main1[.content.vmiddle.center[
+## Open PowerPoint <i class="fas  fa-arrow-right "></i> View <i class="fas  fa-arrow-right "></i> Slide Master
+]]
+.blade2.bg-light-blue[.content.white.vmiddle.center[
+
+]]
+.hole.bg-black[.content.center.nopadding[
+&lt;img src="img/layout_master_screenshot.png" width=80%&gt;
+]]
+.blade3.bg-yellow[.content.vmiddle.center.color-main1[
+## Hopefully someone else can do this for you...
+]]
+.blade4.bg-light-blue[.content.vmiddle.white.center[
+]]
+
+
+---
+class: split-10
+
+.row.bg-main1.white[.content.vmiddle[
+# About Placeholders
+]]
+
+.row[
+.split-40[
+.column.bg-main3[.content[
+
+```r
+library(tidyverse)
+library(officer)
+
+my_pres &lt;- read_pptx("megaman.pptx")
+layout_properties(
+  my_pres, 
+  "robot_master_slide"
+)
+```
+
+
+```
+## # A tibble: 9 x 3
+##   type   id    ph_label                  
+##   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;                     
+## 1 body   8     Rectangle 3               
+## 2 body   14    Picture 13                
+## 3 body   11    robot_name                
+## 4 body   3     user_description          
+## 5 dt     4     Date Placeholder 3        
+## 6 ftr    5     Footer Placeholder 4      
+## 7 sldNum 6     Slide Number Placeholder 5
+## 8 title  2     slide_title               
+## 9 pic    9     robot_img_placeholder
+```
+
+]]
+
+.column.bg-main4[.content[
+
+## Placeholders can be different types
+
+&lt;br&gt;
+
+## Typically multiple "body" placeholders in a layout
+
+&lt;br&gt;
+
+
+```r
+my_pres %&gt;%
+  add_slide("robot_master_slide", "Office Theme") %&gt;%
+  ph_with_text(
+    "Metal Man", 
+    type = "body", 
+    index = 11
+)
+```
+
+### All content functions have an `index` parameter that must be specified in these cases
+
+## How did I know that index value<i class="fas  fa-question "></i>
+
+]]]]]
+
+---
+
+class: shuriken-reverse-100
+
+.blade1.bg-main1[.content.vmiddle.center[
+### `annotate_base("megaman.pptx", "ann.pptx")`
+]]
+.blade2.bg-light-blue[.content.white.vmiddle.center[
+
+]]
+.hole.bg-black[.content.center.nopadding[
+&lt;img src="img/annotate_layout_example.png" width=80%&gt;
+]]
+.blade3.bg-blue[.content.vmiddle.center.color-main1[
+## Use the `index` values in your code!
+]]
+.blade4.bg-light-blue[.content.vmiddle.white.center[
+]]
+
+---
+class: split-10
+
+.row.bg-main1.white[.content.vmiddle[
+# Let's make some slides
+]]
+
+.row[
+.split-60[
+.column.bg-main3[.content[
+
+```r
+my_pres &lt;- read_pptx("megaman.pptx")
+
+my_pres &lt;- my_pres %&gt;%
+  # add title slide
+  add_slide("title_slide", "Office Theme") %&gt;%
+  ph_with_text(type = "ctrTitle", str = "Megaman 2 Survey") %&gt;%
+  ph_with_text(type = "subTitle", str = "Customer: Eric Nantz") %&gt;%
+  ph_with_text(type = "dt", str = format(Sys.Date())) %&gt;%
+  ph_with_text(type = "sldNum", str = "slide 1")
+
+print(my_pres, "result.pptx")
+```
+]]
+
+.column.bg-main4[.content.center.nopadding[
+&lt;img src="img/megaman_title_slide.png" width=95%&gt;
+]
+]]]]]
+
+---
+class: split-10
+
+.row.bg-main1.white[.content.vmiddle[
+# Let's make some slides
+]]
+
+.row[
+.split-60[
+.column.bg-main3[.content[
+
+```r
+# easiest robot master
+my_pres &lt;- my_pres %&gt;%
+  add_slide("robot_master_slide", "Office Theme") %&gt;%
+  ph_with_text(type = "title", str = "Easiest Robot Master") %&gt;%
+  ph_with_img(type = "pic", src = "metalman.jpg") %&gt;%
+  ph_with_text(type = "body", index = 3, str = "Metal Man") %&gt;%
+  ph_with_text(
+    type = "body", 
+    index = 4, 
+    str = "Metal Man's stage had fairly simple enemies to eliminate, and his attack patterns were not sophisicated")
+
+print(my_pres, "result.pptx")
+```
+]]
+
+.column.bg-main4[.content.center.nopadding[
+&lt;img src="img/robot_master_easy_screenshot.png" width=95%&gt;
+]
+]]]]]
+
+---
+
+class: split-10 with-thick-border
+
+.row.bg-main1.white[.content.vmiddle[
+# Another option for placeholders
+]]
+
+.row[
+.split-50[
+.column.bg-main3[.content[
+.center[
+## `ph_*()`
+]
+
+### Position, formatting defined by PowerPoint
+&lt;br&gt;
+### With right index value, it is very dependable
+]]
+
+.column.bg-main3[.content[
+.center[
+## `ph_*_at()`
+]
+### Adds a __new__ placeholder at coordinates supplied in function
+&lt;br&gt;
+### Ability to add formatted text via `fp_text` objects
+&lt;br&gt;
+### Getting right position can be tedious
+]]
+]
+]
+
+---
+class: bg-main2
+# Additional Capabilities
+
+--
+
+## Vector-based graphics via the [`rvg`](https://github.com/davidgohel/rvg) package
+
+&lt;br&gt;
+
+### Ability to edit graph features in PowerPoint or Excel directly
+
+--
+&lt;br&gt;
+
+## Tables via the [`flextable`](https://davidgohel.github.io/flextable/) package
+&lt;br&gt;
+
+### Custom definitions for cell contents and formatting using similar philosophy
+
+&lt;br&gt;
+### Compatible with R Markdown too!
+
+---
+class: bg-main4
+
+# Additional Resources
+
+### [`officer` package documentation](https://davidgohel.github.io/officer/index.html)
+&lt;br&gt;
+
+### [Crafting a PowerPoint Presentation wtih R](http://lenkiefer.com/2017/09/23/crafting-a-powerpoint-presentation-with-r/) and [PURRRty PowerPoint with R](http://lenkiefer.com/2017/09/27/use-purrr/) by [Len Kiefer](https://twitter.com/@lenkiefer)
+
+&lt;br&gt;
+
+### [`officer` tag](https://stackoverflow.com/questions/tagged/officer) on [StackOverflow](https://stackoverflow.com/)
     </textarea>
 <script src="libs/remark-latest.min.js"></script>
+<script src="https://platform.twitter.com/widgets.js"></script>
 <script>var slideshow = remark.create({
 "ratio": "16:9",
 "highlightStyle": "github",

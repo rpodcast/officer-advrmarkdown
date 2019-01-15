@@ -352,15 +352,6 @@ select(res, type, id, ph_label)
 ]]
 
 .column.bg-main4[.content[
-
-## Placeholders can be different types
-
-<br>
-
-## Typically multiple "body" placeholders in a layout
-
-<br>
-
 ```{r eval=F}
 my_pres %>%
   add_slide("robot_master_slide", "Office Theme") %>%
@@ -370,6 +361,14 @@ my_pres %>%
     index = 11
 )
 ```
+
+## Placeholders can be different types
+
+<br>
+
+## Typically multiple "body" placeholders in a layout
+
+<br>
 
 ### All content functions have an `index` parameter that must be specified in these cases
 

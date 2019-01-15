@@ -16,10 +16,13 @@ output:
       highlightLines: true
       countIncrementalSlides: false
       beforeInit: "https://platform.twitter.com/widgets.js"
---- 
+
+---
+class: bg-main1
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
+options(knitr.table.output = 'html')
 library(knitr)
 knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 # options(knitr.table.format = "html")
@@ -33,18 +36,14 @@ library(icon)
 my_pres <- read_pptx("templates/megaman.pptx")
 ```
 
----
-class: bg-main1
 
 # A Few Disclaimers
 <br>
 <br>
 --
 
-## I am not the author of this excellent package
+## I am not the author of this excellent package (just a very happy user)
 
-<br>
-Just a very happy user
 <br>
 
 --
@@ -52,7 +51,7 @@ Just a very happy user
 
 ## I am not a fan of PowerPoint!
 
-<img src="img/looneytunes.gif" width=30%>
+<img src="img/looneytunes.gif" width=40%>
 
 ---
 class: bg-main1
@@ -96,9 +95,6 @@ class: split-two white
 <br>
 
 ## `r emo::ji("x")` Not part of the `r icon::fa("r-project")` Markdown ecosystem
-
-* Functional interface that is pipe-friendly
-
 ]
 ]
 
@@ -240,8 +236,6 @@ my_pres <- read_pptx("megaman.pptx) #<<
 ]]
 
 .column.bg-main1[.content[
-## Initialize foundation
-
 ### File argument optional (`officer` ships with minimal template)
 
 ### `read_pptx` creates an R object representing a PowerPoint file
@@ -526,3 +520,68 @@ class: bg-main4
 
 ### [`officer` tag](https://stackoverflow.com/questions/tagged/officer) on [StackOverflow](https://stackoverflow.com/)
 
+---
+class: bg-main1
+
+# Big thanks to:
+
+<br>
+
+## - Advanced R Markdown [workshop team](http://arm.rbind.io/prework/#instructors)
+
+## - David Gohel for creating `officer` and other awesome packages
+
+## - Emi Tanaka for the [shinobi](https://emitanaka.github.io/ninja-theme/themes/kunoichi/kunoichi-theme-example.html#1) theme used in these slides
+
+## - Open formats!
+
+---
+
+class: split-10 with-thick-border
+
+.row.bg-main1.white[.content.hmiddle[
+# Keep in touch!
+]]
+
+.row[.content[
+.split-three[
+.column.bg-main1[.content[
+.center[
+# `r icon::fa_twitter(size = 3)`
+
+## [@thercast](https://twitter.com/thercast)
+]
+]
+]
+
+.column.bg-main1[.content[
+.center[
+# `r icon::fa_github(size = 3)`
+
+## [github.com/rpodcast](https://github.com/rpodcast)
+]
+]
+]
+
+.column.bg-main1[.content[
+.center[
+# `r icon::fa_gitlab(size = 3)`
+
+## [gitlab.com](https://gitlab.com/rpodcast)
+]
+]
+]
+]
+]
+]
+
+.row[.content[
+## Other efforts in the `r icon::fa("r-project")` community:
+
+### - Contributor to [R Weekly](https://rweekly.org/)
+<br>
+### - [RStudio Community](https://community.rstudio.com/) sustainer
+<br>
+### - Member of [Rbind](https://support.rbind.io/) administrator team
+
+]]

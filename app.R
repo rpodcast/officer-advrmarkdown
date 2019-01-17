@@ -1,6 +1,7 @@
 # load packages ----
 library(shiny)
 library(nessy) # remotes::install_github("ColinFay/nessy")
+library(officer)
 
 # load functions ----
 source("utils.R")
